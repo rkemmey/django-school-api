@@ -37,7 +37,7 @@ class Test_student(TestCase):
             self.fail()
         except ValidationError as e:
             # print(e.message_dict)
-            self.assert_('student_email' in e.message_dict and 'personal_email' in e.message_dict)
+            self.assertTrue('student_email' in e.message_dict and 'personal_email' in e.message_dict)
 
     def test_003_student_with_improper_locker_number_fields(self):
         try:
@@ -53,7 +53,7 @@ class Test_student(TestCase):
             self.fail()
         except Exception as e:
             # print(e)
-            self.assert_("Field 'locker_number' expected a number but got 'None'" in str(e))
+            self.assertTrue("Field 'locker_number' expected a number but got 'None'" in str(e))
 
     def test_004_student_with_improper_locker_combination_fields(self):
         try:
@@ -69,7 +69,7 @@ class Test_student(TestCase):
             self.fail()
         except IntegrityError as e:
             # print(e)
-            self.assert_("null value in column \"locker_combination\" " in str(e))
+            self.assertTrue("null value in column \"locker_combination\" " in str(e))
 
     def test_005_student_with_improper_name_field(self):
         try:
@@ -85,7 +85,7 @@ class Test_student(TestCase):
             self.fail()
         except Exception as e:
             # print(e)
-            self.assert_("null value in column \"name\" " in str(e))
+            self.assertTrue("null value in column \"name\" " in str(e))
 
     
     def test_006_student_with_proper_fields(self):
