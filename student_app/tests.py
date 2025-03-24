@@ -2,8 +2,9 @@ from django.test import TestCase
 
 # Create your tests here.
 from student_app.models import Student 
-# renamed tests file outside dir to old_tests, set absolute path to Student,
-# ran this line for tests 'python manage.py test student_app'
+# 1. renamed tests file outside student_app dir to old_tests (after copying file over), 
+# 2. set absolute path to Student "from student_app.models import Student" in tests.py
+# 3. ran this line for tests 'python manage.py test student_app'
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 
