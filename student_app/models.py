@@ -1,13 +1,14 @@
 from django.db import models
+from .validator import validate_name_format, validate_school_email, validate_combination_format, validate_locker_num
 
 # Create your models here.
 # models.Model tell Django this is a Model that should be reflected on our database
 class Student(models.Model):
-    name = models.CharField(max_length=255, unique=False)
-    student_email = models.EmailField(unique=True)
+    name = models.CharField(max_length=255, unique=False, validators=[validate_name_format])
+    student_email = models.EmailField(unique=True, validators=[validate_school_email])
     personal_email = models.EmailField(unique=True)
-    locker_number = models.PositiveIntegerField(unique=True, default=110)
-    locker_combination = models.CharField(max_length=20, default="12-12-12")
+    locker_number = models.PositiveIntegerField(unique=True, default=110, validators=[validate_locker_num])
+    locker_combination = models.CharField(max_length=20, default="12-12-12", validators=[validate_combination_format])
     good_student = models.BooleanField(default=True)
 
     def __str__(self):
