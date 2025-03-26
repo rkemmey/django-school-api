@@ -7,7 +7,7 @@ from subject_app.models import Subject
 class Student(models.Model):
     name = models.CharField(max_length=255, unique=False, validators=[validate_name_format])
     student_email = models.EmailField(unique=True, validators=[validate_school_email])
-    personal_email = models.EmailField(unique=True)
+    personal_email = models.EmailField(null=False, blank=False, unique=True)
     locker_number = models.PositiveIntegerField(unique=True, default=110, validators=[validate_locker_num])
     locker_combination = models.CharField(max_length=20, default="12-12-12", validators=[validate_combination_format])
     good_student = models.BooleanField(default=True)

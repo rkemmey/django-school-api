@@ -10,4 +10,4 @@ class StudentAllSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student # specify what model this serializer is for
         # fields = '__all__'
-        fields = ['name', 'student_email', 'personal_email', 'locker_number', 'locker_combination', 'good_student']
+        exclude = ['id']
