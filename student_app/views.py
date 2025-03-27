@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from .models import Student
-from .serializers import StudentSerializer 
-from django.http import JsonResponse
+from .serializers import StudentAllSerializer 
+#from django.http import JsonResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
 # Create your views here.
 
-def all_students(request):
-    students = StudentSerializer(Student.objects.all(), many=True) 
-    return JsonResponse({"students": students.data}) 
+# def all_students(request):
+#     students = StudentAllSerializer(Student.objects.all(), many=True) 
+#     return JsonResponse({"students": students.data}) 
 
-def all_subjects(request):
-    subjects = StudentSerializer(Student.objects.all(), many=True) 
-    return JsonResponse({"subjects": subjects.data}) 
+class All_students(APIView):
+    def get(self, request):
+        students = Student.objects.all()
+        serialized_students = StudentAllSerializer(students, many=True)
+        return Response(serialized_students.data)
